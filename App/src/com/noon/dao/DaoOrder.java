@@ -85,9 +85,9 @@ public class DaoOrder {
 					DBConnect.pw_mysql);
 			Statement stmt_mysql = conn_mysql.createStatement();
 
-			String query = "insert into noon.order (ordertime, hotice, quantity, shot, syrup, size, indiprice, "; // ***
+			String query = "INSERT INTO noon.order (ordertime, hotice, quantity, shot, syrup, size, indiprice, "; // ***
 			String query2 = "member_id, set_setno, set_menu_name, shop_shopcode, staff_id) "; // 마지막
-			String query3 = "values (concat(curdate(),' ',?),?,?,?,?,?,?,?,?,?,?,?)"; // 뛰기
+			String query3 = "VALUES (concat(curdate(),' ',?),?,?,?,?,?,?,?,?,?,?,?)"; // 뛰기
 			ps = conn_mysql.prepareStatement(query + query2 + query3); // ***
 			ps.setString(1, ordertime);
 			ps.setInt(2, hotice);
@@ -118,10 +118,9 @@ public class DaoOrder {
 
 		ArrayList<DtoOrder> BeanList = new ArrayList<DtoOrder>();
 
-		String whereStatement = "select o.orderno, o.hotice, o.quantity, o.shot, o.syrup, o.size, o.indiprice, o.set_menu_name, s.photonow from setting s, noon.order o ";
-		String whereStatement2 = "where s.setno = o.set_setno and o.paytime is null and o.member_id = '"
-				+ Panel01Login.id + "' ";
-		String whereStatement3 = "and s.shop_shopcode = '" + Panel05Order01Shop.shopcode + "'";
+		String whereStatement = "SELECT o.orderno, o.hotice, o.quantity, o.shot, o.syrup, o.size, o.indiprice, o.set_menu_name, s.photonow from setting s, noon.order o ";
+		String whereStatement2 = "WHERE s.setno = o.set_setno and o.paytime is null AND o.member_id = '" + Panel01Login.id + "' ";
+		String whereStatement3 = "AND s.shop_shopcode = '" + Panel05Order01Shop.shopcode + "'";
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -204,7 +203,7 @@ public class DaoOrder {
 					DBConnect.pw_mysql);
 			Statement stmt_mysql = conn_mysql.createStatement();
 
-			String query = "delete from noon.order where orderno = ? "; // *** 마지막 한칸 뛰기 ***
+			String query = "DELETE from noon.order where orderno = ? "; // *** 마지막 한칸 뛰기 ***
 
 			ps = conn_mysql.prepareStatement(query);
 			ps.setInt(1, orderno);
@@ -226,10 +225,9 @@ public class DaoOrder {
 
 		int totalCart = 0;
 
-		String whereStatement = "select o.quantity, o.shot, o.syrup, o.size, o.indiprice from setting s, noon.order o ";
-		String whereStatement2 = "where s.setno = o.set_setno and o.paytime is null and o.member_id = '"
-				+ Panel01Login.id + "' ";
-		String whereStatement3 = "and s.shop_shopcode = '" + Panel05Order01Shop.shopcode + "'";
+		String whereStatement = "SELECT o.quantity, o.shot, o.syrup, o.size, o.indiprice from setting s, noon.order o ";
+		String whereStatement2 = "WHERE s.setno = o.set_setno AND o.paytime is null AND o.member_id = '" + Panel01Login.id + "' ";
+		String whereStatement3 = "AND s.shop_shopcode = '" + Panel05Order01Shop.shopcode + "'";
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -270,8 +268,8 @@ public class DaoOrder {
 			Connection conn_mysql = DriverManager.getConnection(DBConnect.url_mysql, DBConnect.id_mysql, DBConnect.pw_mysql);
 			Statement stmt_mysql = conn_mysql.createStatement();
 			
-			String query = "update noon.order set forheretogo = ?, paytime = now() "; // *** 마지막 한칸 뛰기 ***
-			String query2 = "where member_id = '" + Panel01Login.id + "'";
+			String query = "UPDATE noon.order SET forheretogo = ?, paytime = now() "; // *** 마지막 한칸 뛰기 ***
+			String query2 = "WHERE member_id = '" + Panel01Login.id + "'";
 			
 			ps = conn_mysql.prepareStatement(query + query2);
 			ps.setString(1, forheretogo);

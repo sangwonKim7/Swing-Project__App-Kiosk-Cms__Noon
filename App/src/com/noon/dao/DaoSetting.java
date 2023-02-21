@@ -32,13 +32,13 @@ public class DaoSetting {
 	}
 
 	// Method
-	// Menu 불러오기
+	// 전체 Menu 불러오기
 	public ArrayList<DtoSetting> menuList() {
 		
 		ArrayList<DtoSetting> BeanList = new ArrayList<DtoSetting>();
 		
-		String whereStatement = "select setno, menu_name, categorynow, pricenow, photonow from setting ";
-		String whereStatement2 = "where enddate is null ";
+		String whereStatement = "SELECT setno, menu_name, categorynow, pricenow, photonow from setting ";
+		String whereStatement2 = "WHERE enddate is null ";
 		String whereStatement3 = "and shop_shopcode = '" + Panel05Order01Shop.shopcode + "'";
 		
 		// select s.menu_name, s.pricenow, s.photonow from setting s, menu m
